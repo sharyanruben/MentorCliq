@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recommended Employees</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.css}"/>
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.js}"></script>
+</head>
+<body>
+<div class="page-wrap d-flex flex-row align-items-center">
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-10 mx-auto">
+                <h1 class="display-4">Matching Combinations</h1>
+                <table class="table table-striped" th:if="${status}">
+                    <tbody>
+                    <tr th:each="matchingCombination, i : ${matchingCombinations}">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col" th:text="${i.index+1}+'.'"></th>
+                                <th scope="col">First Employee</th>
+                                <th scope="col">Second Employee</th>
+                                <th scope="col">Matching percentage</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="combination : ${matchingCombination.combinations}">
+                                <td>#</td>
+                                <td><span th:text="${combination.employee1.name}"></span></td>
+                                <td><span th:text="${combination.employee2.name}"></span></td>
+                                <td><span th:text="${combination.percent} + '%'"></span></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <th><span>Average score</span></th>
+                                <th><span th:text="${matchingCombination.average} + '%'"></span></th>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-10 mx-auto">
+                <h1 class="display-4">Highest matching score</h1>
+                <table class="table table-striped" th:if="${status}">
+                    <tbody>
+                    <tr th:each="employeeAverages, i : ${recommended}">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col" th:text="${i.index+1}+'.'"></th>
+                                <th scope="col">First Employee</th>
+                                <th scope="col">Second Employee</th>
+                                <th scope="col">Matching percentage</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="employee : ${employeeAverages.combinations}">
+                                <td>#</td>
+                                <td><span th:text="${employee.employee1.name}"></span></td>
+                                <td><span th:text="${employee.employee2.name}"></span></td>
+                                <td><span th:text="${employee.percent} + '%'"></span></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <th><span>Average score</span></th>
+                                <th><span th:text="${employeeAverages.average} + '%'"></span></th>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

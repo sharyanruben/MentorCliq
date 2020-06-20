@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.css}"/>
+
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.js}"></script>
+<body>
+
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <span class="display-1 d-block" th:text="${status}"></span>
+            <div class="alert alert-danger" role="alert">
+                <p th:text="${errorMessage}"></p>
+            </div>
+            <a th:href="@{/}" class="btn btn-link">Go Back</a>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
